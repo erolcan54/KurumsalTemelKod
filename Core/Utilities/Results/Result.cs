@@ -7,9 +7,9 @@ namespace Core.Utilities.Results
     public class Result : IResult
     {
 
-        public Result(bool success, string message):this(success) // 15. satırdaki constructur a success verisini gönder. Her iki cons çalışır.
+        public Result(bool success, string message) : this(success)
         {
-            Message = Message;
+            Message = message;
         }
 
         public Result(bool success)
@@ -22,3 +22,4 @@ namespace Core.Utilities.Results
         public string Message { get; }
     }
 }
+
