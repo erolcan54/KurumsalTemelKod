@@ -1,4 +1,5 @@
 using Business.Abstract;
+using Business.CCS;
 using Business.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
@@ -33,6 +34,11 @@ namespace WebAPI
 
             services.AddSingleton<IProductService, ProductManager>();
             services.AddSingleton<IProductDal, EfProductDal>();
+
+            services.AddSingleton<ICategoryService, CategoryManager>();
+            services.AddSingleton<ICategoryDal, EfCategoryDal>();
+
+            services.AddSingleton<Business.CCS.ILogger, FileLogger>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

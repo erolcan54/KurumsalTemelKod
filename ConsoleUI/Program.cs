@@ -1,4 +1,5 @@
-﻿using Business.Concrete;
+﻿using Business.CCS;
+using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using System;
@@ -16,7 +17,7 @@ namespace ConsoleUI
         private static void CategoryTest()
         {
             CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
-            foreach (var item in categoryManager.GetAll())
+            foreach (var item in categoryManager.GetAll().Data)
             {
                 Console.WriteLine(item.CategoryName);
             }
@@ -24,7 +25,7 @@ namespace ConsoleUI
 
         private static void ProdauctTest()
         {
-            ProductManager productManeger = new ProductManager(new EfProductDal());
+            ProductManager productManeger = new ProductManager(new EfProductDal(),new FileLogger(),new CategoryManager(new EfCategoryDal()));
 
             var result = productManeger.GetAll();
             if(result.Success==true)
