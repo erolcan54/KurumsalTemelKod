@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Business.Concrete;
+using DataAccess.Concrete.EntityFramework;
+using Entities.Concrete;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +13,15 @@ namespace WebCoreUI.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
+            var result=categoryManager.GetAll();
+            List<Category> categoryList=null;
+            if (result.Success)
+            {
+                categoryList = result.Data;
+            }
+            
+            return View(categoryList);
         }
     }
 }
